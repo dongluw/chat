@@ -16,19 +16,19 @@ nltk.download('punkt')
 name_of_land = st.text_input("Give me a sentence:", placeholder="Once upon a time in a land called Tieling we came upon a wonderful waterway.")
 if name_of_land:
     prompt = word_tokenize(name_of_land)
+    st.header("RANDOM:")
     random.shuffle(prompt)
-    prompt = ["RANDOM:"] + prompt
-    prompt = " ".join(prompt)
-    # output the generation
-    st.header(prompt)
+    st.header(" ".join(prompt))
 
+temp = st.number_input('Temperature', value=0.3)
 permutated = st.text_input("Give me the permutated sentence:", placeholder="")
 if permutated:
     generation = co.generate(
-        model='133a5d31-9740-4700-87a2-dbf01a52cfc1-ft',
-        prompt=prompt + "\nSORTED:",
+        model='0c12477e-d4ef-4eff-bf91-91b491dc6612-ft',
+        prompt="RANDOM: " + permutated.strip() + "\nSORTED:",
         max_tokens=35,
-        temperature=0.3,
+        temperature=temp,
         stop_sequences=["\n"]).generations[0].text
 
-    st.header("SORTED:" + generation)
+    st.header("SORTED with temperature " + str(temp) + ":")
+    st.header(generation)
