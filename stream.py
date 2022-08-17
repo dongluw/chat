@@ -16,7 +16,7 @@ nltk.download('punkt')
 name_of_land = st.text_input("Give me a sentence:", placeholder="Once upon a time in a land called Tieling we came upon a wonderful waterway.")
 if name_of_land:
     prompt = word_tokenize(name_of_land)
-    st.header("Permutated:")
+    st.header("Permuted:")
     random.shuffle(prompt)
     st.header(" ".join(prompt))
 
